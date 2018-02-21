@@ -1,0 +1,1 @@
+npm run build && rm -r ~/Descargas/COSW\ labs/LAB3/LAB3-FINAL/src/main/resources/static/* && cp dist/* ~/Descargas/COSW\ labs/LAB3/LAB3-FINAL/src/main/resources/static/ && cd ~/Descargas/COSW\ labs/LAB3/LAB3-FINAL/ && sh run.sh
