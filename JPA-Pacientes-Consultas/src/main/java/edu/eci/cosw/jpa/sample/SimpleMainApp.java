@@ -16,12 +16,16 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.Paciente;
+import edu.eci.cosw.jpa.sample.model.PacienteId;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import java.text.MessageFormat;
 
 /**
  *
@@ -33,12 +37,20 @@ public class SimpleMainApp {
         SessionFactory sf=getSessionFactory();
         Session s=sf.openSession();
         Transaction tx=s.beginTransaction();
-        
-        tx.commit();    
+
+        Paciente emp = new Paciente();
+        Paciente emp1 = (Paciente) s.load(Paciente.class, new PacienteId(1,"cc"));
+        System.out.println(MessageFormat.format(" ===== nombre: {0}", emp1.getNombre()));
+
+        tx.commit();
         s.close();
         sf.close();
 
     }
+
+   
+    
+   
 
     public static SessionFactory getSessionFactory() {
         // loads configuration and mappings
