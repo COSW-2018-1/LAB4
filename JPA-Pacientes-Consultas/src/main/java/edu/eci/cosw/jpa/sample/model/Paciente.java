@@ -7,6 +7,11 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,12 +20,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PACIENTES")
 public class Paciente implements java.io.Serializable {
-    
-    
-    private PacienteId id;    
-    private String nombre;      
+
+    @Id
+    @EmbeddedId    
+    @Column(name = "id")
+    private PacienteId id;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
-    
+
+    @OneToMany
+    @JoinColumns({
+        @JoinColumn(name="PACIENTES_id", referencedColumnName="id"),
+        @JoinColumn(name="PACIENTES_tipo_id", referencedColumnName="tipo_id")
+    })
     private Set<Consulta> consultas = new HashSet<>(0);
 
     public Paciente() {
@@ -39,8 +55,8 @@ public class Paciente implements java.io.Serializable {
         this.consultas = consultas;
     }
 
-    @EmbeddedId
-    @Column(name = "id")
+    
+  
     public PacienteId getId() {
         return this.id;
     }
@@ -49,7 +65,6 @@ public class Paciente implements java.io.Serializable {
         this.id = id;
     }
 
-    @Column(name = "nombre")
     public String getNombre() {
         return this.nombre;
     }
@@ -58,7 +73,6 @@ public class Paciente implements java.io.Serializable {
         this.nombre = nombre;
     }
 
-    @Column(name = "fecha_nacimiento")
     public Date getFechaNacimiento() {
         return this.fechaNacimiento;
     }
@@ -67,6 +81,7 @@ public class Paciente implements java.io.Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+   
     public Set<Consulta> getConsultas() {
         return this.consultas;
     }

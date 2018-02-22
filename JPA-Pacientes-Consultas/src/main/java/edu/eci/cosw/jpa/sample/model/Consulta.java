@@ -4,6 +4,8 @@ package edu.eci.cosw.jpa.sample.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -13,9 +15,14 @@ import javax.persistence.Table;
 @Table(name = "CONSULTAS")
 public class Consulta implements java.io.Serializable {
 
-    
+    @Id @GeneratedValue
+    @Column(name = "idCONSULTAS")
     private Integer idConsultas;
+    
+    @Column(name = "fecha_y_hora")
     private Date fechaYHora;
+    
+    @Column(name = "resumen")
     private String resumen;
 
     public Consulta() {
@@ -26,7 +33,7 @@ public class Consulta implements java.io.Serializable {
         this.resumen = resumen;
     }
 
-    @Column(name = "idCONSULTAS")
+    
     public Integer getIdConsultas() {
         return this.idConsultas;
     }
@@ -35,7 +42,7 @@ public class Consulta implements java.io.Serializable {
         this.idConsultas = idConsultas;
     }
 
-    @Column(name = "fecha_y_hora")
+    
     public Date getFechaYHora() {
         return this.fechaYHora;
     }
@@ -44,7 +51,7 @@ public class Consulta implements java.io.Serializable {
         this.fechaYHora = fechaYHora;
     }
 
-    @Column(name = "resumen")
+    
     public String getResumen() {
         return this.resumen;
     }
