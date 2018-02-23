@@ -16,6 +16,7 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.Consulta;
 import edu.eci.cosw.jpa.sample.model.Paciente;
 import edu.eci.cosw.jpa.sample.model.PacienteId;
 import org.hibernate.Session;
@@ -26,6 +27,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import java.text.MessageFormat;
+import java.util.Date;
 
 /**
  *
@@ -35,22 +37,27 @@ public class SimpleMainApp {
    
     public static void main(String a[]){
         SessionFactory sf=getSessionFactory();
-        Session s=sf.openSession();
-        Transaction tx=s.beginTransaction();
+        Session session=sf.openSession();
+        Transaction tx=session.beginTransaction();
 
-        Paciente emp = new Paciente();
-        Paciente emp1 = (Paciente) s.load(Paciente.class, new PacienteId(1,"cc"));
+        Paciente emp1 = (Paciente) session.load(Paciente.class, new PacienteId(1,"cc"));
         System.out.println(MessageFormat.format(" ===== nombre: {0}", emp1.getNombre()));
 
+        Consulta nuevaConsulta = new Consulta(new Date() , emp1.getNombre());
+        emp1.addConsulta(nuevaConsulta);
+        session.save(emp1);
+
+
+
         tx.commit();
-        s.close();
+        session.close();
         sf.close();
 
     }
 
-   
-    
-   
+
+
+
 
     public static SessionFactory getSessionFactory() {
         // loads configuration and mappings
