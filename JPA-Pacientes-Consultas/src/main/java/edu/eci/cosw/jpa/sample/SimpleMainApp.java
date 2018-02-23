@@ -47,7 +47,8 @@ public class SimpleMainApp {
         emp1.addConsulta(nuevaConsulta);
         session.save(emp1);
 
-
+        /** mysql -h desarrollo.is.escuelaing.edu.co:3306 -u bdprueba -p bdprueba  **/
+        //contraseña bdprueba
 
         tx.commit();
         session.close();
