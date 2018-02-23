@@ -31,11 +31,13 @@ public class SimpleMainApp {
    
     public static void main(String a[]){
         SessionFactory sf=getSessionFactory();
-        Session s=sf.openSession();
-        Transaction tx=s.beginTransaction();
-        
+        Session session=sf.openSession();
+        Transaction tx=session.beginTransaction();
+
+
+
         tx.commit();       
-        s.close();
+        session.close();
         sf.close();
 
     }
