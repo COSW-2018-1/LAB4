@@ -82,6 +82,8 @@ public class Curso implements java.io.Serializable {
         this.estudiantes = estudianteses;
     }
 
+    public void addEstudiante(Estudiante estudiante) { this.estudiantes.add(estudiante); }
+
 
 }
 

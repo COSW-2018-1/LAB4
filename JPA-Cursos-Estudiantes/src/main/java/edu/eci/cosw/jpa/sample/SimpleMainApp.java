@@ -16,12 +16,17 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.Curso;
+import edu.eci.cosw.jpa.sample.model.Estudiante;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -31,11 +36,34 @@ public class SimpleMainApp {
    
     public static void main(String a[]){
         SessionFactory sf=getSessionFactory();
-        Session s=sf.openSession();
-        Transaction tx=s.beginTransaction();
-        
+        Session session=sf.openSession();
+        Transaction tx=session.beginTransaction();
+
+        // datos para la transaccion
+        Estudiante est1 = new Estudiante(1111111110,"AAA Sergio");
+        Estudiante est2 = new Estudiante(1111111112,"AAA Manuel");
+
+        Curso cur1 = new Curso(911111110,"curso 110", "curso finan1");
+        Curso cur2 = new Curso(911111112,"curso 120", "curso finan2");
+
+
+        // SE DEBE AGREGAR LOS CURSOS A CADA USUARIO Y LUEGO GUARDAR, NO HACE FALTA GUARDAR ESTUDIANTES EN CADA CURSO
+
+        est1.addCurso(cur1);
+        est1.addCurso(cur2);
+
+        est2.addCurso(cur1);
+        est2.addCurso(cur2);
+
+        // GUARDAR DATOS EN LA BD
+        session.saveOrUpdate(cur1);
+        session.saveOrUpdate(cur2);
+        session.saveOrUpdate(est1);
+        session.saveOrUpdate(est2);
+
+
         tx.commit(); 
-        s.close();
+        session.close();
         sf.close();
     }
 

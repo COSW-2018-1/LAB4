@@ -68,6 +68,8 @@ public class Estudiante implements java.io.Serializable {
         this.cursos = cursos;
     }
 
+    public void addCurso(Curso curso) { this.cursos.add(curso); }
+
 
 }
 
