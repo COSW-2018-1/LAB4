@@ -24,7 +24,13 @@ public class Curso implements java.io.Serializable {
     private String nemonico;
 
 
-    @ManyToMany(mappedBy="ESTUDIANTES")
+    @ManyToMany
+    @JoinTable(name="ESTUDIANTES_CURSOS",
+            joinColumns=
+            @JoinColumn(name="CURSOS_id", referencedColumnName="id"),
+            inverseJoinColumns=
+            @JoinColumn(name="ESTUDIANTES_codigo", referencedColumnName="codigo")
+    )
     private Set<Estudiante> estudiantes = new HashSet<>(0);
 
     public Curso() {
