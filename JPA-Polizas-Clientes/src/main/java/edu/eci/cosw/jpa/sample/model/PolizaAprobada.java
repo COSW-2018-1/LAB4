@@ -88,7 +88,6 @@ public class PolizaAprobada implements java.io.Serializable {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-
 }
 
 

@@ -16,12 +16,16 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import java.text.MessageFormat;
+import java.util.Date;
 
 /**
  *
@@ -34,6 +38,18 @@ public class SimpleMainApp {
         Session session=sf.openSession();
         Transaction tx=session.beginTransaction();
 
+        //Cliente emp1 = (Cliente) session.load(Cliente.class, new Cliente(new ClienteId(101,"cc"),"Rey Arturo", "calle 14","314646556"));
+        //System.out.println(MessageFormat.format(" ===== nombre: {0}", emp1.getNombre()));
+
+        ClienteId clienteID = new ClienteId(101,"cc");
+        Cliente emp1 = new Cliente(clienteID,"Rey Arturo", "calle 14","314646556");
+
+        PolizaAprobadaId polizaAID = new PolizaAprobadaId(clienteID.getId(),clienteID.getTipoId(), 1);
+        TipoPoliza tipoPoliza = new TipoPoliza("Poliza Type1", "Cuando rompa la espada", 100000000);
+
+        PolizaAprobada nuevaPolizaA = new PolizaAprobada(polizaAID, emp1, tipoPoliza, new Date(), new Date());
+
+        session.save(emp1);
 
 
         tx.commit();       

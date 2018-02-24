@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://sql10.freemysqlhosting.net:3306</property>
+    <property name="hibernate.connection.url">jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10222750?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">sql10222750</property>
     <property name="hibernate.connection.password">Yaj8Ffmk4l</property>
   

@@ -30,8 +30,8 @@ public class TipoPoliza implements java.io.Serializable {
     }
 
 
-    public TipoPoliza(int codigoPoliza, String nombre, String descripcion, long montoMaximo) {
-        this.codigoPoliza = codigoPoliza;
+    public TipoPoliza(/*int codigoPoliza,*/ String nombre, String descripcion, long montoMaximo) {
+        //this.codigoPoliza = codigoPoliza;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.montoMaximo = montoMaximo;
